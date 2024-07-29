@@ -1,0 +1,47 @@
+{{define "view"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multiple Upload</title>
+</head>
+<body>
+
+    <form id="form" method="post" action="/upload">
+        <input required multiple type="file" id="upload-file">
+        <br>
+        <br>
+        <input id="btn-upload" type="submit" value="Upload">
+    </form>
+
+    <script src="/static/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $("#form").on("submit", function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            var files = $("#upload-file")[0].files;
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append("files", files[i]);
+            }
+            $.ajax({
+                url: $self.attr("action"),
+                type: $self.attr("method"),
+                data: formData,
+                processData: false,
+                contentType: false,
+            }).then(function (res) {
+                alert(res);
+                $("#user-form").trigger("reset");
+            }).catch(function (a) {
+                alert("ERROR: " + a.responseText);
+            });
+        });
+
+    </script>
+</body>
+</html>
+{{end}}
