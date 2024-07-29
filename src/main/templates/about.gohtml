@@ -1,0 +1,15 @@
+{{define "about"}}
+<!doctype html>
+<html lang="en">
+<head>
+    {{template "_header"}}
+</head>
+<body>
+    <h1>Welcome {{.title}}</h1>
+    <p><strong>{{.body}}</strong></p>
+    <br>
+    {{template "_content"}}
+    {{template "_footer"}}
+</body>
+</html>
+{{end}}

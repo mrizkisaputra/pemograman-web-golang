@@ -1,0 +1,28 @@
+{{define "home"}}
+<!doctype html>
+<html lang="en">
+<head>
+    {{template "_header"}}
+</head>
+<body>
+    <h1>Welcome {{.title}}</h1>
+    <p><strong>{{.body}}</strong></p>
+    <p>Memangil fungsi lokal : <strong>{{.Login "kiki" "rahasia"}}</strong></p>
+    <span>Memangil global fungsi html(): {{html "<h2>Hello fungsi html</h2>"}}</span>
+    <br>
+    <span>Memangil global fungsi js(): {{js "<script>alert('You Hack')</script>"}}</span>
+    <br>
+    <span>Memangil global fungsi printf: {{printf "Hello %s, How old are you? I'am %d" "kiki" 23}}</span>
+    <br>
+    <p>Menggunakan global fungsi len: {{len "Berapa panajang string ini"}}</p>
+    {{if and true true}}
+        <p>Menggunakan global fungsi operator logika: true and true= true</p>
+    {{end}}
+{{/*    <h6>{{.query}}</h6>*/}}
+    <br>
+    {{template "_content"}}
+    {{template "_footer"}}
+
+</body>
+</html>
+{{end}}
